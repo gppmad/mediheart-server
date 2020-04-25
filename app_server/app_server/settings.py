@@ -11,11 +11,12 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
+from dotenv import load_dotenv
+load_dotenv(verbose=True)
 
-root = environ.Path(__file__)
-env = environ.Env()
-environ.Env.read_env()
+
+# False if not in os.environ
+DEBUG = bool(os.getenv('DEBUG',True))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,10 +28,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '&orove2)xazk4qx#v&798f#k%1d7x+6019$t$_$78kn&+2hwcj'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=True)
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
