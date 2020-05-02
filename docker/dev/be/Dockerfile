@@ -2,7 +2,7 @@
 FROM python:3.8.0-alpine
 
 # set work directory
-WORKDIR /usr/src/app
+WORKDIR /app_server
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -10,8 +10,9 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./app_server/requirements.txt /usr/src/app/requirements.txt
-RUN pip install -r requirements.txt
+COPY ./app_server/requirements /app_server/requirements
+
+RUN pip install --no-cache-dir -r requirements/base.txt
 
 # copy project
-COPY . /usr/src/app/
+COPY ./app_server /app_server
