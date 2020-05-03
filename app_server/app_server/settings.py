@@ -14,13 +14,11 @@ import os
 import environ
 env = environ.Env(
     # set casting, default value
-    #DEBUG=(bool, False)
+    DEBUG=(bool, False)
 )
+
 # reading .env file
 environ.Env.read_env()
-#from dotenv import load_dotenv
-#load_dotenv()
-
 
 # False if not in os.environ
 DEBUG = env('DEBUG')
@@ -33,9 +31,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY')
 
-ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS')]
+#ALLOWED_HOSTS = env.str('DJANGO_ALLOWED_HOSTS', default='*').split(',')
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,4 +126,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = os.getenv('STATIC_URL')
+STATIC_URL = '/static/'

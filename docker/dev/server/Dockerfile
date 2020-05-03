@@ -12,7 +12,7 @@ ENV PYTHONUNBUFFERED 1
 RUN pip install --upgrade pip
 COPY ./app_server/requirements /app_server/requirements
 
-RUN pip install --no-cache-dir -r requirements/base.txt
+RUN pip install --no-cache-dir -r requirements/dev.txt
 
 # copy project
 COPY ./app_server /app_server
