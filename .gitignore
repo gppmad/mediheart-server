@@ -1,3 +1,9 @@
+#This Project
+*.sqlite3
+env/
+app_server/static/
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
