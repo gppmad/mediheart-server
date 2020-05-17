@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Patiens(models.Model):
+class Patients(models.Model):
     class Meta:
         db_table = 'app_server.api.patients'
 
