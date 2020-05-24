@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Patients(models.Model):
     class Meta:
+        app_label = "api"
         db_table = 'app_server.api.patients'
 
     # Choises Values
