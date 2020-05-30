@@ -25,9 +25,9 @@ class Patients(models.Model):
 
     firstname = models.CharField(max_length = 50)
     lastname = models.CharField(max_length = 50)
-    birth_date = models.DateField()
+    birthDate = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    blood_type = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
+    bloodType = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
 
     def __str__(self):
        return str(str(self.__dict__))
