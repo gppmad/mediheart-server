@@ -2,6 +2,9 @@ version: '3.7'
 volumes: 
   static_files:
 
+networks:
+    backend:
+
 services:
 
   nginx:
@@ -12,6 +15,8 @@ services:
       - static_files:/static_files
     ports:
       - 80:80
+    networks:
+        - backend
 
   server:
     build:
@@ -22,8 +27,10 @@ services:
     volumes:
       - static_files:/static_files
       - ./app_server/:/app_server
-    ports:
-      - 8000:8000
+    # ports:
+    #   - 8000:8000
     env_file:
       - ./env/prod/.env
+    networks:
+      - backend
   
