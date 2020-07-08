@@ -1,17 +1,21 @@
-from django.http import JsonResponse
-from django.views import View
-from api.models.patients import Patients as DBModel
+#from django.http import JsonResponse
+#from django.views import View
 # from api.serializers import PatientsSerializer as DBModelSerializer
 #from api.serializers import RamDeleteSerializer as DBModelDeleteSerializer
-import json
+
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from api.models.patients import Patients as DBModel
 from datetime import date
 from dateutil.relativedelta import relativedelta
 
+import json
 import os
 
-class PersonalInformationsView(View):
+class PersonalInformationsView(APIView):
     
-    #GET OBJECT(S) WITH ID PARAMETER
+    """GET OBJECT(S) WITH ID PARAMETER"""
+
     def get(self, request, id=""):
         api_response = {}
 
@@ -29,9 +33,10 @@ class PersonalInformationsView(View):
 
             #return JsonResponse({"result":query.birthDate})
         except DBModel.DoesNotExist:
-            return JsonResponse({"error":"resource not found" }, status=404)
-        return JsonResponse({"result":api_response})
+            return Response({"error":"resource not found" }, status=404)
+        return Response({"result":api_response})
 
-class PersonalInformationsModifyView(View):
+class PersonalInformationsModifyView(APIView):
+    
     pass
  
