@@ -1,7 +1,7 @@
 #This Project
 *.sqlite3
 env/
-api/static_files
+api/static_files/
 #app_server/static/
 
 
