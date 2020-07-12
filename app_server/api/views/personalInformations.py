@@ -6,6 +6,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from api.models.patient import Patient as DBModel
+from api.models.bloodtype import BloodType as BloodType
 from api.serializers.serializers import PatientSerializer as DBModelSerializer
 from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer
 
@@ -26,11 +27,14 @@ class PersonalInformationsView(APIView):
         try:
 
             query = DBModel.objects.values().get(pk=id) #Dict
-            print(query)
+            #query_2 = DBModel.objects.filter(BloodType)
+            blood_type_query = BloodType.objects.all()
+
             api_response["firstname"] = query["firstname"]
             api_response["lastname"] = query["lastname"]
             api_response["gender"] = query["gender"]
-            api_response["bloodType"] = query["bloodType"]
+            api_response["bloodType"] = query["bloodType_id"]
+
             #Computing Age
             age = relativedelta(date.today(), query["birthDate"]).years
             api_response["age"] = age
