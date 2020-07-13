@@ -29,7 +29,7 @@ class Patient(models.Model):
     birthDate = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
     #bloodType = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
-    bloodType = models.ForeignKey(BloodType, on_delete=models.CASCADE)
+    bloodtype = models.ForeignKey(BloodType, on_delete=models.CASCADE)
 
     def __str__(self):
        return str(str(self.__dict__))

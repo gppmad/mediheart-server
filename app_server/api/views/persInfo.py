@@ -1,11 +1,7 @@
-#from django.http import JsonResponse
-#from django.views import View
-# from api.serializers import PatientsSerializer as DBModelSerializer
-#from api.serializers import RamDeleteSerializer as DBModelDeleteSerializer
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models.patient import Patient as DBModel
+from api.models.patient import Patient as DBModel #LEGACY
+from api.models.patient import Patient as Patient
 from api.models.bloodtype import BloodType as BloodType
 from api.serializers.serializers import PatientSerializer as DBModelSerializer
 from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer
@@ -16,7 +12,7 @@ from dateutil.relativedelta import relativedelta
 import json
 import os
 
-class PersonalInformationsView(APIView):
+class PersInfoView(APIView):
     
     """GET OBJECT(S) WITH ID PARAMETER"""
 
@@ -26,27 +22,32 @@ class PersonalInformationsView(APIView):
         #Get with ID Parameter    
         try:
 
-            query = DBModel.objects.values().get(pk=id) #Dict
-            #query_2 = DBModel.objects.filter(BloodType)
-            blood_type_query = BloodType.objects.all()
-
-            api_response["firstname"] = query["firstname"]
-            api_response["lastname"] = query["lastname"]
-            api_response["gender"] = query["gender"]
-            api_response["bloodType"] = query["bloodType_id"]
+            #query = DBModel.objects.values().get(pk=id) #Dict
+            #print(query_obj.bloodtype.type)
+            query_obj = Patient.objects.get(pk=id)
+        
+            api_response["firstname"] = query_obj.firstname
+            api_response["lastname"] = query_obj.lastname
+            api_response["gender"] = query_obj.gender
+            api_response["bloodType"] = query_obj.bloodtype.type
 
             #Computing Age
-            age = relativedelta(date.today(), query["birthDate"]).years
+            age = relativedelta(date.today(), query_obj.birthDate).years
             api_response["age"] = age
 
-            #return JsonResponse({"result":query.birthDate})
         except DBModel.DoesNotExist:
             return Response({"error":"resource not found" }, status=404)
-        return Response({"result":api_response})
+        return Response({"data":api_response})
     
-    
+class PersInfoModifyView(APIView):
+    def get(self, request, id=""):
+        api_response = {}
 
-class PersonalInformationsModifyView(APIView):
+        api_response.form = "pippo"
+
+    pass 
+
+class Things(APIView):
 
     #POST OBJECT(S)
     def post(self, request):
