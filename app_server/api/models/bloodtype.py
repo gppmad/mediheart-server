@@ -17,7 +17,8 @@ class BloodType(models.Model):
         ('0-', '0- Blood Type'),
     )
 
-    type = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
+    label = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
+    value = models.CharField(max_length=10, choices=BLOODTYPE_CHOICES)
     #bloodType = models.CharField(max_length=3)
     
     def __str__(self):

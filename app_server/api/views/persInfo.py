@@ -29,7 +29,7 @@ class PersInfoView(APIView):
             api_response["firstname"] = query_obj.firstname
             api_response["lastname"] = query_obj.lastname
             api_response["gender"] = query_obj.gender
-            api_response["bloodType"] = query_obj.bloodtype.type
+            api_response["bloodType"] = query_obj.bloodtype.label
 
             #Computing Age
             age = relativedelta(date.today(), query_obj.birthDate).years
@@ -40,12 +40,18 @@ class PersInfoView(APIView):
         return Response({"data":api_response})
     
 class PersInfoModifyView(APIView):
+
+    """GET OBJECT(S) WITH ID PARAMETER"""
     def get(self, request, id=""):
         api_response = {}
+        form = {}
+        bloodType = {}
+        api_response['gender_list'] = ('M','F')
+        api_response['bloodType'] = BloodType.objects.all().values()
+        api_response['pers-info'] = Patient.objects.values().get(pk=1)
 
-        api_response.form = "pippo"
 
-    pass 
+        return Response({"data":api_response})
 
 class Things(APIView):
 
