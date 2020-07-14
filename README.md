@@ -1,2 +1,2 @@
-# currency-converter-server
+# MediHeart Backend
 Backend of MediHeart Project
