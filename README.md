@@ -1,2 +1,2 @@
-# currency-converter-server
-Server of Currency Converter SaaS Project.
+# MediHeart Backend
+Backend of MediHeart Project
