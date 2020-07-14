@@ -12,7 +12,7 @@ from dateutil.relativedelta import relativedelta
 import json
 import os
 
-class PersInfoView(APIView):
+class PersonalInfoView(APIView):
     
     """GET OBJECT(S) WITH ID PARAMETER"""
 
@@ -39,16 +39,23 @@ class PersInfoView(APIView):
             return Response({"error":"resource not found" }, status=404)
         return Response({"data":api_response})
     
-class PersInfoModifyView(APIView):
+class PersonalInfoModifyView(APIView): 
 
     """GET OBJECT(S) WITH ID PARAMETER"""
     def get(self, request, id=""):
         api_response = {}
-        form = {}
-        bloodType = {}
+        
+        bloodtype_obj = BloodType.objects.all()
+
+        patient_obj = Patient.objects.get(pk=1)
+        patient_values = Patient.objects.values().get(pk=1)
+
+        del patient_values["bloodtype_id"]
+        patient_values["bloodtype"] = patient_obj.bloodtype.label
+        
         api_response['gender_list'] = ('M','F')
-        api_response['bloodType'] = BloodType.objects.all().values()
-        api_response['pers-info'] = Patient.objects.values().get(pk=1)
+        api_response['bloodType'] = bloodtype_obj.values()
+        api_response['personalInfo'] = patient_values
 
 
         return Response({"data":api_response})
