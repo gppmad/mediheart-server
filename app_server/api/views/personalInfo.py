@@ -3,8 +3,10 @@ from rest_framework.response import Response
 from api.models.patient import Patient as DBModel #LEGACY
 from api.models.patient import Patient as Patient
 from api.models.bloodtype import BloodType as BloodType
-from api.serializers.serializers import PatientSerializer as DBModelSerializer
-from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer
+from api.serializers.serializers import PatientSerializer as PatientSerializer
+from api.serializers.serializers import PatientDelSerializer as PatientDelSerializer
+from api.serializers.serializers import PatientSerializer as DBModelSerializer #LEGACY
+from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer #LEGACY
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
@@ -15,7 +17,8 @@ import os
 class PersonalInfoView(APIView):
     
     """GET OBJECT(S) WITH ID PARAMETER"""
-
+    
+    #GET OBJECT WITH ID
     def get(self, request, id=""):
         api_response = {}
 
@@ -39,6 +42,75 @@ class PersonalInfoView(APIView):
             return Response({"error":"resource not found" }, status=404)
         return Response({"data":api_response})
     
+    #POST OBJECT(S)
+    def post(self, request):
+        api_response = {}
+        api_response["message"] = "Record(s) has been inserted successfully"
+        array_data = {}
+
+        try:
+            array_data = json.loads(request.body)
+            serializer = PatientSerializer(data=array_data,many=True)
+        except Exception as e:
+                #print(str(e))
+                return Response({"server_error":str(e) }, status=500) 
+
+        if serializer.is_valid():
+            try:
+                serializer.save()
+            except Exception as e:
+                #print(str(e))
+                return Response({"server_error":str(e) }, status=500) 
+            return Response({"data":api_response})
+        else:
+            return Response({"client_error":serializer.errors }, status=400)
+
+    #UPDATE OBJECT(S)
+    def put(self, request):
+        api_response = {}
+        api_response["message"] = "Record(s) has been updated successfully"
+
+        try:
+            array_data = json.loads(request.body)
+        except Exception as e:
+            return JsonResponse({"client_error":str(e) }, status=400)
+
+        for el in array_data:
+            obj = Patient.objects.get(pk=el.get("id",""))
+            serializer = PatientSerializer(obj,data=el,partial=True)
+            if(serializer.is_valid()):
+                try:
+                    serializer.save()
+                except Exception as e:
+                    return Response({"server_error":str(e) }, status=500)                 
+            else:
+                return Response({"client_error":serializer.errors }, status=400)
+        
+        return Response({"data":api_response})
+    
+    #DELETE OBJECT(S)
+    def delete(self,request):
+        #Ex: [{"id":10}, {"id": 11}]
+
+        api_response = {}
+        api_response["message"] = "Record(s) has been deleted successfully"
+
+        array_data = json.loads(request.body)
+        print(array_data)
+        for el in array_data:
+            print(el)
+            serializer = PatientDelSerializer(data=el)
+
+            if serializer.is_valid():
+                try:
+                    Patient.objects.filter(pk=el.get("id","")).delete()
+                except Exception as e:
+                    return Response({"server_error":str(e) }, status=500)   
+            else:
+                return Response({"client_error":serializer.errors }, status=400)  
+        return Response({"data":api_response}) 
+
+   
 class PersonalInfoModifyView(APIView): 
 
     """GET OBJECT(S) WITH ID PARAMETER"""
@@ -60,42 +132,6 @@ class PersonalInfoModifyView(APIView):
 
         return Response({"data":api_response})
 
-class Things(APIView):
 
-    #POST OBJECT(S)
-    def post(self, request):
-        #[{"value":6,"um":"GB"}, {"value":10,"um":"GB"} ]
-        #array_data = [{"value":600,"um":"GB"}, {"value":10,"um":"GB"} ]
-        array_data = json.loads(request.body)
-        
-        serializer = DBModelSerializer(data=array_data,many=True)
-        
-        if serializer.is_valid():
-            try:
-                serializer.save()
-            except Exception as e:
-                print(str(e))
-                return Response({"server_error":str(e) }, status=500) 
-            return Response({"result":"ok"})
-        else:
-            return Response({"client_error":serializer.errors }, status=400)  
-
-    #DELETE OBJECT(S)
-    def delete(self,request):
-        # array_data = [{"id":10}, {"id": 11}]
-
-        array_data = json.loads(request.body)
-        for el in array_data:
-            print(el)
-            serializer = DBModelDelSerializer(data=el)
-
-            if serializer.is_valid():
-                try:
-                    DBModel.objects.filter(pk=el.get("id","")).delete()
-                except Exception as e:
-                    return Response({"server_error":str(e) }, status=500)
-
-                return Response({"result":"ok"})    
-            else:
-                return Response({"client_error":serializer.errors }, status=400)
+    
  
