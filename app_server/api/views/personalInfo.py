@@ -1,12 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from api.models.patient import Patient as DBModel #LEGACY
 from api.models.patient import Patient as Patient
 from api.models.bloodtype import BloodType as BloodType
 from api.serializers.serializers import PatientSerializer as PatientSerializer
 from api.serializers.serializers import PatientDelSerializer as PatientDelSerializer
 from api.serializers.serializers import PatientSerializer as DBModelSerializer #LEGACY
 from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer #LEGACY
+from api.models.patient import Patient as DBModel #LEGACY
 
 from datetime import date
 from dateutil.relativedelta import relativedelta
