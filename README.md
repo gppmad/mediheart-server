@@ -1,2 +1,2 @@
 # MediHeart Backend
-Backend of MediHeart Project
+A simple backend to experiment with Django and Docker.
