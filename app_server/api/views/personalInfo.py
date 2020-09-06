@@ -16,7 +16,7 @@ import json
 import os
 
 class PersonalInfoView(APIView):
-    permission_classes = (IsAuthenticated,)   
+    #permission_classes = (IsAuthenticated,)   
 
     #GET OBJECT WITH ID
     def get(self, request, id=""):
