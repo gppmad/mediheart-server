@@ -14,12 +14,18 @@ import os
 
 class WelcomeAuth(APIView):
 
-    permission_classes = (IsAuthenticated,)   
+    #permission_classes = (IsAuthenticated,)   
 
     #GET OBJECT WITH ID
     def get(self, request, id=""):
-        #Get with ID Parameter    
 
-        print(request.user)
-        return Response({"data":"Welcome"})
+        #Get with ID Parameter
+        if(request.user.is_authenticated):   
+            msg = "Welcome " + request.user.get_username().capitalize()
+            user_id = request.user.pk
+            email = request.user.email
+            return Response({"msg":msg, "email":email, "user_id":user_id})
+        else:
+            msg = "Welcome Anonymous"
+            return Response({"msg":msg})
     
