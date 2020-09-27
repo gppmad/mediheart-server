@@ -1,9 +1,11 @@
 from django.urls import path
 from . import views
 from api.views.auth.login import Login
+from api.views.auth.logout import Logout
+from api.views.auth.signup import Signup
 from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView
 from api.views.test_auth import WelcomeAuth
-from api.views.authentication import signup,logout
+from api.views.authentication import logout
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
@@ -12,8 +14,8 @@ urlpatterns = [
     #path('personalInformations/modify/<int:id>/', PersonalInformationsModifyView.as_view())
     #path('login/', obtain_auth_token, name='api_token_auth'),  # <-- And here
     path('login/', Login.as_view(), name='api_token_auth'),  # <-- And here
-    path('logout/', logout, name="logout"),
-    path('signup/', signup, name="signup"),
+    path('logout/', Logout.as_view(), name="logout"),
+    path('signup/', Signup.as_view(), name="signup"),
     path('welcomeAuth/', WelcomeAuth.as_view()),
 
 

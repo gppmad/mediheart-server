@@ -10,21 +10,21 @@ from rest_framework.decorators import api_view, renderer_classes, permission_cla
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
 
-@api_view(('POST',))
-def signup(request):
+# @api_view(('POST',))
+# def signup(request):
     
-    #This function is used for the web service signup process.
-    form = UserCreationForm(request.POST)
-    print(form.is_valid())
-    if form.is_valid():
-        form.save()
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password1')
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        return Response({"data":"user created"})
-    else:
-        return Response({"error:":form.errors}, status=404)
+#     #This function is used for the web service signup process.
+#     form = UserCreationForm(request.POST)
+#     print(form.is_valid())
+#     if form.is_valid():
+#         form.save()
+#         username = form.cleaned_data.get('username')
+#         password = form.cleaned_data.get('password1')
+#         user = authenticate(username=username, password=password)
+#         login(request, user)
+#         return Response({"data":"user created"})
+#     else:
+#         return Response({"error:":form.errors}, status=404)
 
 
 @api_view(('GET',))
