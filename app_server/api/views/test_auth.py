@@ -26,7 +26,7 @@ class WelcomeAuth(APIView):
             msg = "Welcome " + request.user.get_username().capitalize()
             user_id = request.user.pk
             email = request.user.email
-            send_mail('Welcome', msg, 'bobo.maddiona@gmail.com', ['giuseppe.maddiona@gmail.com'])
+            # send_mail('Welcome', msg, 'bobo.maddiona@gmail.com', ['giuseppe.maddiona@gmail.com'])
             return Response({"msg":msg, "email":email, "user_id":user_id})
         
         else:
