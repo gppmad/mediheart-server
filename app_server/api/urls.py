@@ -5,7 +5,6 @@ from api.views.auth.logout import Logout
 from api.views.auth.signup import Signup
 from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView
 from api.views.test_auth import WelcomeAuth
-from api.views.authentication import logout
 from rest_framework.authtoken.views import obtain_auth_token
 
 urlpatterns = [
