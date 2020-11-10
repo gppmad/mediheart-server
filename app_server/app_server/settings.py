@@ -22,7 +22,7 @@ environ.Env.read_env()
 
 # False if not in os.environ
 #DEBUG = env('DEBUG')
-DEBUG = False
+DEBUG = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -140,7 +140,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/app_server/static_files/'
+STATIC_ROOT = '/static_files/'
 
 #STATIC_ROOT = os.path.join(BASE_DIR + '/app_server', '/static_files/')
 
