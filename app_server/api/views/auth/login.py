@@ -13,7 +13,7 @@ class Login(ObtainAuthToken):
         serializer = self.serializer_class(data=request.data, context={'request': request})
         serializer.is_valid(raise_exception=True)
         user = serializer.validated_data['user'] # user obj
-        patient = Patients.objects.get(fk_user_id_id=user.id) # patient obj
+        patient = Patients.objects.get(fk_user_id=user.id) # patient obj
         token, created = Token.objects.get_or_create(user=user)
         return Response({
             'token': token.key,

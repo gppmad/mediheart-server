@@ -1,6 +1,6 @@
 #!/bin/sh
-v=0.0.2
+v=0.0.4
 
 docker build -f ./docker/qa/Dockerfile -t mediheart_qa_server:$v . --no-cache
-docker tag mediheart_qa_server:0.0.2 giuseppemaddiona/mh-server-qa:0.0.2
-docker push giuseppemaddiona/mh-server-qa:0.0.2 
+docker tag mediheart_qa_server:$v giuseppemaddiona/mh-server-qa:$v
+docker push giuseppemaddiona/mh-server-qa:$v 

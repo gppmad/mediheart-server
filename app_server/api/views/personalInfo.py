@@ -1,3 +1,4 @@
+from django.db.models import F
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated  
@@ -118,16 +119,11 @@ class PersonalInfoModifyView(APIView):
         api_response = {}
         
         bloodtype_obj = BloodType.objects.all()
-
-        patient_obj = Patients.objects.get(pk=1)
-        patient_values = Patients.objects.values().get(pk=1)
-
-        del patient_values["bloodtype_id"]
-        patient_values["bloodtype"] = patient_obj.bloodtype.label
-        
-        api_response['gender_list'] = ('M','F')
-        api_response['bloodType'] = bloodtype_obj.values()
-        api_response['personalInfo'] = patient_values
+        patient_obj = Patients.objects.values("firstname","lastname","birthDate","gender", bloodType=F("bloodtype"), patientId=F("id") ).get(pk=1)
+              
+        api_response['genderList'] = ('M','F')
+        api_response['bloodTypeList'] = bloodtype_obj.values()
+        api_response['personalInfo'] = patient_obj
 
 
         return Response({"data":api_response})

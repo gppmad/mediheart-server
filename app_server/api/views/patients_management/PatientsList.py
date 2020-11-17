@@ -15,5 +15,5 @@ class PatientsList (APIView):
         # patient_serializer = PatientSerializer(patients_table, many=True)
         # return Response(patient_serializer.data)
 
-        patients_table = list(Patients.objects.all().values("firstname","lastname","birthDate","gender", userId=F("fk_user_id_id") ) )
+        patients_table = list(Patients.objects.all().values("firstname","lastname","birthDate","gender", patientId=F("id"), userId=F("fk_user")  ) )
         return JsonResponse({'data':patients_table})
