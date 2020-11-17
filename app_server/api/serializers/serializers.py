@@ -1,15 +1,15 @@
 from rest_framework import serializers
-from api.models.patient import Patient
+from api.models.patients import Patients
 from api.models.bloodtype import BloodType
 
-class PatientSerializer(serializers.ModelSerializer):
+class PatientsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Patient
-        fields = ['firstname','lastname','birthDate','gender','bloodtype']
+        model = Patients
+        fields = ['id','firstname','lastname','birthDate','gender','bloodtype']
 
-class PatientDelSerializer(serializers.ModelSerializer):
+class PatientsDelSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Patient
+        model = Patients
         fields = ['id',]
 
 class BloodTypeSerializer(serializers.ModelSerializer):

@@ -1,4 +1,4 @@
-#This Project
+# About This Project
 *.sqlite3
 env/
 app_server/static_files/

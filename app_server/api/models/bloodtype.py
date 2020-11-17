@@ -4,7 +4,7 @@ from django.db import models
 class BloodType(models.Model):
     class Meta:
         app_label = "api"
-        db_table = 'api.bloodtype'
+        db_table = 'api_bloodtype'
 
     BLOODTYPE_CHOICES = (
         ('A+', 'A+ Blood Type'),
