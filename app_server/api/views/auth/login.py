@@ -27,8 +27,8 @@ class Login(ObtainAuthToken):
         
         return Response({
             'token': token.key,
-            #'user_id': user.id, # Only for dev
             'patientId': patient.id,
-            'username': user.username,
+            'username': user.username
+             #'user_id': user.id, # Only for dev
             #'patientName': patient.firstname
     })

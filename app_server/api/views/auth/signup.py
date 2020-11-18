@@ -31,12 +31,20 @@ class Signup(ObtainAuthToken):
 
             # Create Patient into api_patients
             try:
-                new_patient = Patients.objects.create(fk_user_id=user.id) #Patient created with foreign key setted with 
+                new_patient = Patients.objects.create(fk_user_id=user.id) #Patient created with foreign key setted with
+                
             except:
                 user.delete()
                 return Response({"error:":"can't create patient with this user ID"}, status=500)
+            
+            token = Token.objects.create(user=user) #TODO Manage Exception
 
-            return Response({"data":"user created"})
+            return Response({
+                'token': token.key,
+                'patientId': new_patient.id,
+                'username': user.username
+            })
+            #return Response({"data":"user created"})
 
         else:
             return Response({"error:":form.errors}, status=404)
