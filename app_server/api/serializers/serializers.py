@@ -5,7 +5,7 @@ from api.models.bloodtype import BloodType
 class PatientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patients
-        fields = ['id','firstname','lastname','birthDate','gender','bloodtype']
+        fields = ['id','firstname','lastname','birthDate','gender','bloodtype','fk_user']
 
 class PatientsDelSerializer(serializers.ModelSerializer):
     class Meta:

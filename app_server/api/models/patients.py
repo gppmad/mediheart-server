@@ -26,13 +26,12 @@ class Patients(models.Model):
     # )
     #bloodType = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
 
-    firstname = models.CharField(max_length = 50)
-    lastname = models.CharField(max_length = 50)
-    birthDate = models.DateField()
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    bloodtype = models.ForeignKey(BloodType, on_delete=models.CASCADE)
-    fk_user = models.ForeignKey(User, on_delete = models.CASCADE, null=True)
+    firstname = models.CharField(max_length = 50,null=True)
+    lastname = models.CharField(max_length = 50,null=True)
+    birthDate = models.DateField(null=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES,null=True)
+    bloodtype = models.ForeignKey(BloodType, on_delete=models.CASCADE,null=True)
+    fk_user = models.ForeignKey(User, on_delete = models.CASCADE,null=True)
     
-
     def __str__(self):
        return str(str(self.__dict__))

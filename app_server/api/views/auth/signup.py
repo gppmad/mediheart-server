@@ -10,19 +10,33 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from django.core.exceptions import ObjectDoesNotExist
 
+from api.models.patients import Patients
+from api.serializers.serializers import PatientsSerializer as PatientsSerializer
+
 class Signup(ObtainAuthToken):
 
     def post(self, request, *args, **kwargs):
 
         #This function is used for the web service signup process.
         form = UserCreationForm(request.POST)
-        print(form.is_valid())
+        #print(form.is_valid())
         if form.is_valid():
+
+            # Create User into auth_user
             form.save()
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
+
+            # Create Patient into api_patients
+            try:
+                new_patient = Patients.objects.create(fk_user_id=user.id) #Patient created with foreign key setted with 
+            except:
+                user.delete()
+                return Response({"error:":"can't create patient with this user ID"}, status=500)
+
             return Response({"data":"user created"})
+
         else:
             return Response({"error:":form.errors}, status=404)
