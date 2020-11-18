@@ -33,13 +33,16 @@ class PersonalInfoView(APIView):
             api_response["firstname"] = query_obj.firstname
             api_response["lastname"] = query_obj.lastname
             api_response["gender"] = query_obj.gender
-            api_response["bloodType"] = query_obj.bloodtype.label
+            try:
+                api_response["bloodType"] = query_obj.bloodtype.label
+            except:
+                 api_response["bloodType"] = None
 
             #Computed Age
             age = relativedelta(date.today(), query_obj.birthDate).years
             api_response["age"] = age
 
-        except DBModel.DoesNotExist:
+        except:
             return Response({"error":"resource not found" }, status=404)
         return Response({"data":api_response})
     
