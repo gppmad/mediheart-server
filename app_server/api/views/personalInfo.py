@@ -123,8 +123,9 @@ class PersonalInfoModifyView(APIView):
         
         bloodtype_obj = BloodType.objects.all()
         patient_obj = Patients.objects.values("firstname","lastname","birthDate","gender", bloodType=F("bloodtype"), patientId=F("id") ).get(pk=1)
-              
-        api_response['genderList'] = ('M','F')
+ 
+        api_response['genderList'] = [{"id":'M', "label":'Male'},{"id":'F', "label":'Female'}]
+        # api_response['genderList'] = Patients.GENDER_CHOICES.values("")
         api_response['bloodTypeList'] = bloodtype_obj.values()
         api_response['personalInfo'] = patient_obj
 
