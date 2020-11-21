@@ -32,7 +32,7 @@ class PersonalInfoView(APIView):
         
             api_response["firstname"] = query_obj.firstname
             api_response["lastname"] = query_obj.lastname
-            api_response["gender"] = query_obj.gender
+            api_response["gender"] = query_obj.get_gender_display()
             try:
                 api_response["bloodType"] = query_obj.bloodtype.label
             except:
