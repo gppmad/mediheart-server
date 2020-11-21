@@ -22,8 +22,8 @@ urlpatterns = [
 
 
     path('personalInfo/<int:id>/', PersonalInfoView.as_view()),
-    path('personalInfo/', PersonalInfoView.as_view()),
-    path('personalInfo/modify/', PersonalInfoModifyView.as_view()),
+    # path('personalInfo/', PersonalInfoView.as_view()),
+    path('personalInfo/modify/<int:id>/', PersonalInfoModifyView.as_view()),
 
     # patients_management view folder
     path('patients/', PatientsList.as_view(), name="patients"),
