@@ -1,5 +1,5 @@
 from django.db import models
-from api.models.bloodtype import BloodType as BloodType
+from api.models.bloodType import BloodType as BloodType
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -30,7 +30,7 @@ class Patients(models.Model):
     lastname = models.CharField(max_length = 50,null=True)
     birthDate = models.DateField(null=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES,null=True)
-    bloodtype = models.ForeignKey(BloodType, on_delete=models.CASCADE,null=True)
+    bloodType = models.ForeignKey(BloodType, on_delete=models.CASCADE,null=True)
     fk_user = models.ForeignKey(User, on_delete = models.CASCADE,null=True, unique=True)
     
     def __str__(self):

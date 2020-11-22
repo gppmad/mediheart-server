@@ -3,7 +3,7 @@ SELECT id,
        lastname,
        birthDate,
        gender,
-       [api.bloodType].id,
-       [api.bloodtype].bloodType
-FROM [api.patients]
-INNER JOIN [api.bloodtype] ON [api.patients].bloodType_id=[api.bloodtype].id
+       [api_bloodtype].id,
+       [api_bloodtype].bloodType
+FROM [api_patients]
+INNER JOIN [api_bloodtype] ON [api_patients].bloodType_id=[api_bloodtype].id

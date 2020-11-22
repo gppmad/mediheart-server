@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from api.models.patients import Patients
-from api.models.bloodtype import BloodType
+from api.models.bloodType import BloodType
 
 class PatientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patients
-        fields = ['id','firstname','lastname','birthDate','gender','bloodtype','fk_user']
+        fields = ['id','firstname','lastname','birthDate','gender','bloodType','fk_user']
 
 class PatientsDelSerializer(serializers.ModelSerializer):
     class Meta:

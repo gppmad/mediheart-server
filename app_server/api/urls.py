@@ -4,7 +4,7 @@ from api.views.auth.login import Login
 from api.views.auth.logout import Logout
 from api.views.auth.signup import Signup
 from api.views.patients_management.PatientsList import PatientsList
-from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView
+from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView,PersonalInfoAllUsersView
 from api.views.test_auth import WelcomeAuth
 from rest_framework.authtoken.views import obtain_auth_token
 
@@ -21,9 +21,9 @@ urlpatterns = [
     path('welcomeAuth/', WelcomeAuth.as_view()),
 
 
-    path('personalInfo/<int:id>/', PersonalInfoView.as_view()),
-    # path('personalInfo/', PersonalInfoView.as_view()),
+    path('personalInfo/<int:id>', PersonalInfoView.as_view()),
     path('personalInfo/modify/<int:id>/', PersonalInfoModifyView.as_view()),
+    path('personalInfo/', PersonalInfoAllUsersView.as_view()),  # for multiple operations (update all patients)
 
     # patients_management view folder
     path('patients/', PatientsList.as_view(), name="patients"),
