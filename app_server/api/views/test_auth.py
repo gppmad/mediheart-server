@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated  
 from api.models.patients import Patients as Patients
-from api.models.bloodtype import BloodType as BloodType
+from api.models.bloodType import BloodType as BloodType
 from api.serializers.serializers import PatientsSerializer as PatientsSerializer
 from api.serializers.serializers import PatientsDelSerializer as PatientsDelSerializer
 from django.core.mail import send_mail
