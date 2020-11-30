@@ -8,6 +8,8 @@ from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView,Perso
 from api.views.test_auth import WelcomeAuth
 from rest_framework.authtoken.views import obtain_auth_token
 
+from api.views.test_log import TestLog
+
 urlpatterns = [
     #path('', views.index, name='index'),
     #path('personalInformations/<int:id>/', PersonalInformationsView.as_view()),
@@ -27,4 +29,7 @@ urlpatterns = [
 
     # patients_management view folder
     path('patients/', PatientsList.as_view(), name="patients"),
+
+    #TEST SECTION
+    path('log/', TestLog.as_view())
 ]

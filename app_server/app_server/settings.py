@@ -121,13 +121,44 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+#Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'formatter_info': {
+            'format': '{levelname}: [{asctime}] [{module}] Message: {message}',
+            'style': '{',
+        },
+
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'formatter_info'
+        },
+    },
+    #'root': {
+    #    'handlers': ['console'],
+    #    'level': 'INFO',
+    #},
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO'
+        }
+        
+    },
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'CET'
 
 USE_I18N = True
 
