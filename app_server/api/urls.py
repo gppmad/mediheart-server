@@ -3,6 +3,7 @@ from . import views
 from api.views.auth.login import Login
 from api.views.auth.logout import Logout
 from api.views.auth.signup import Signup
+from api.views.auth.changePassword import ChangePassword
 from api.views.patients_management.PatientsList import PatientsList
 from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView,PersonalInfoAllUsersView
 from api.views.test_auth import WelcomeAuth
@@ -18,6 +19,7 @@ urlpatterns = [
     path('login/', Login.as_view(), name='api_token_auth'),  # <-- And here
     path('logout/', Logout.as_view(), name="logout"),
     path('signup/', Signup.as_view(), name="signup"),
+    path('changePassword/', ChangePassword.as_view(), name="changePassword"),
     path('welcomeAuth/', WelcomeAuth.as_view()),
 
 
