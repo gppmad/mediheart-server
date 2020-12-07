@@ -8,7 +8,7 @@ from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView,Perso
 from api.views.test_auth import WelcomeAuth
 from rest_framework.authtoken.views import obtain_auth_token
 
-from api.views.test_log import TestLog
+from api.samples.sample_log import TestLog
 
 urlpatterns = [
     #path('', views.index, name='index'),

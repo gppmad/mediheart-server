@@ -127,28 +127,41 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        'formatter_info': {
-            'format': '{levelname}: [{asctime}] [{module}] Message: {message}',
+        'simple': {
+            # 'format':'[{server_time}] {message}',
+            'format': '[{levelname}] [{asctime}] [{module}] [Message: {message}] ',
             'style': '{',
         },
+        # 'formatter_request': {
+        #     # 'format':'[{server_time}] {message}',
+        #     'format': '[{levelname}] [{asctime}] [{module}] [Message: {message}] [{request}]',
+        #     'style': '{',
+        # },
 
     },
     'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
-            'formatter': 'formatter_info'
+            'formatter': 'simple'
         },
+        # 'console_django_request': {
+        #     'class': 'logging.StreamHandler',
+        #     'formatter': 'formatter_request'
+        # },
     },
-    #'root': {
-    #    'handlers': ['console'],
-    #    'level': 'INFO',
-    #},
     'loggers': {
+        # root level
         '': {
             'handlers': ['console'],
-            'level': 'INFO'
-        }
-        
+            'level': 'INFO',
+            'propagate': False
+        },
+        #django messages
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False
+        },
     },
 }
 

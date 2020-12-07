@@ -1,7 +1,9 @@
-from django.db.models import F
+import json
+from datetime import date
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated  
+from django.db.models import F
 from api.models.patients import Patients as Patients
 from api.models.bloodType import BloodType as BloodType
 from api.serializers.serializers import PatientsSerializer as PatientsSerializer
@@ -10,11 +12,8 @@ from api.serializers.serializers import PatientsDelSerializer as PatientsDelSeri
 # from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer #LEGACY
 # from api.models.patient import Patient as DBModel #LEGACY
 
-from datetime import date
 from dateutil.relativedelta import relativedelta
 
-import json
-import os
 
 class PersonalInfoView(APIView):
     #permission_classes = (IsAuthenticated,)   
