@@ -1,31 +1,23 @@
-from django.test import TestCase
 from django.db.models import F
+from django.test import TestCase
 from api.models.patients import Patients
-#from api.serializers.serializers import PatientsSerializer as PatientsSerializer
+from api.models.bloodType import BloodType
 
-class PatientListTest(TestCase):
+class TestPatientsList(TestCase):
+    def setUp(self):
 
-    def test(self):
+        #setting up bloodtype values
+        bloodtype_list=("A+","A-","B+","B-","AB+","AB-","0+","0-")
+        for be in bloodtype_list:
+            BloodType.objects.create(label=be)
         
-        array_data = {
-            "firstname": "valeria",
-            "lastname": "dolce",
-            "birthDate": "1992-04-13",
-            "gender": "F",
-            "bloodtype": 1
-        }
-        print(array_data)
+        #setting up patients values
+        Patients.objects.create(firstname="Valery", lastname="Dolce", birthDate=None, gender="F", bloodType=None, fk_user=None )
+        Patients.objects.create(firstname="Rosario", lastname="Dolce", birthDate=None, gender="M", bloodType=None, fk_user=None )
+
+    def test_getAll(self):
+        bloodtype_table = list(BloodType.objects.all())
+        
         patients_table = list(Patients.objects.all().values("firstname","lastname","birthDate","gender", patientId=F("id"), userId=F("fk_user")  ) )
-        print(patients_table)
-
-        #serializer = PatientsSerializer(data=array_data,many=True)
-        
-        # if serializer.is_valid():
-        #     serializer.save()
-        #     patients_table = list(Patients.objects.all().values("firstname","lastname","birthDate","gender", patientId=F("id"), userId=F("fk_user")  ) )
-        #     self.assertGreaterEqual(len(patients_table),0)
-        # else:
-        #     self.assertTrue(1==0)   
-        #self.assertGreater(len(patients_table),0)
-        #self.assertEqual('foo'.upper(), 'FOOX')
-
+        print("here the list",patients_table)
+        self.assertEqual( len(patients_table),2)

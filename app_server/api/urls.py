@@ -1,14 +1,14 @@
 from django.urls import path
-from . import views
+from api.samples.sample_log import TestLog
 from api.views.auth.login import Login
 from api.views.auth.logout import Logout
 from api.views.auth.signup import Signup
 from api.views.patients_management.PatientsList import PatientsList
-from api.views.personalInfo import PersonalInfoView,PersonalInfoModifyView,PersonalInfoAllUsersView
-from api.views.test_auth import WelcomeAuth
+from api.views.patients_management.personalInfo import PersonalInfoView,PersonalInfoModifyView,PersonalInfoAllUsersView
+from api.views.auth.test_auth import WelcomeAuth
 from rest_framework.authtoken.views import obtain_auth_token
 
-from api.samples.sample_log import TestLog
+
 
 urlpatterns = [
     #path('', views.index, name='index'),

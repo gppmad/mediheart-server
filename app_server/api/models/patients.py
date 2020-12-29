@@ -1,6 +1,6 @@
-from django.db import models
-from api.models.bloodType import BloodType as BloodType
+from api.models.bloodType import BloodType
 from django.contrib.auth.models import User
+from django.db import models
 
 # Create your models here.
 class Patients(models.Model):
@@ -13,18 +13,6 @@ class Patients(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-
-    # BLOODTYPE_CHOICES = (
-    #     ('A+', 'A+'),
-    #     ('A-', 'A-'),
-    #     ('B+', 'B+'),
-    #     ('B-', 'B-'),
-    #     ('AB+', 'AB+'),
-    #     ('AB-', 'AB-'),
-    #     ('0+', '0+'),
-    #     ('0-', '0-'),
-    # )
-    #bloodType = models.CharField(max_length=3, choices=BLOODTYPE_CHOICES)
 
     firstname = models.CharField(max_length = 50,null=True)
     lastname = models.CharField(max_length = 50,null=True)
