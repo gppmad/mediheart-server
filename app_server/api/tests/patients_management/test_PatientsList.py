@@ -16,7 +16,7 @@ class TestPatientsList(TestCase):
         Patients.objects.create(firstname="Rosario", lastname="Dolce", birthDate=None, gender="M", bloodType=None, fk_user=None )
 
     def test_getAll(self):
-        bloodtype_table = list(BloodType.objects.all())
+        #bloodtype_table = list(BloodType.objects.all())
         
         patients_table = list(Patients.objects.all().values("firstname","lastname","birthDate","gender", patientId=F("id"), userId=F("fk_user")  ) )
         print("here the list",patients_table)

@@ -11,32 +11,22 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import environ
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, False)
-)
-
-# reading .env file
-environ.Env.read_env()
+from django.core.management.utils import get_random_secret_key
 
 # False if not in os.environ
-#DEBUG = env('DEBUG')
-DEBUG = True
+DEBUG = os.getenv("DEBUG", "False")
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = env('SECRET_KEY')
-SECRET_KEY = "1+_o=)@n(2h2_9t#6w()6%^!#%^17)krj##-u164*d&e7isdbfdev"
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 #ALLOWED_HOSTS = env.str('DJANGO_ALLOWED_HOSTS', default='*').split(',')
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
 
 # Application definition
