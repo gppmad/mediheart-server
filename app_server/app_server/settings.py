@@ -13,14 +13,11 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from django.core.management.utils import get_random_secret_key
 
-# False if not in os.environ
-DEBUG = os.getenv("DEBUG", "False")
+# True if not in os.environ
+DEBUG = os.getenv("DEBUG", "True") == "True"
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
@@ -30,7 +27,6 @@ ALLOWED_HOSTS = ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,loc
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'django.contrib.admin',
@@ -111,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-#Logging
+# Logging
 
 LOGGING = {
     'version': 1,
@@ -177,7 +173,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
 
 # MAIL HOST
-
 # EMAIL_BACKEND = env('EMAIL_BACKEND')
 # EMAIL_HOST = env('EMAIL_HOST')
 # EMAIL_PORT = env('EMAIL_PORT')
