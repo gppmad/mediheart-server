@@ -6,10 +6,9 @@ services:
     build:
       context: .
       dockerfile: ./docker/dev/server/Dockerfile
-    command: python manage.py runserver 0.0.0.0:8000
     volumes:
-      - ./app_server/:/app_server
+      - ./:/app_server
     ports:
       - 8000:8000
-    env_file:
-      - ./env/dev/.env
+    # env_file:
+    #   - ./env/dev/.env
