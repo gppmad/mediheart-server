@@ -17,7 +17,7 @@ import os
 class Email(APIView):
 
     #permission_classes = (IsAuthenticated,)   
-
+    
     #GET OBJECT WITH ID
     def get(self, request, id=""):
 
@@ -30,6 +30,6 @@ class Email(APIView):
             return Response({"msg":msg, "email":email, "user_id":user_id})
         
         else:
-            msg = "Welcome Anonymous"
+            msg = "Welcome Anonymous "
             return Response({"msg":msg})
     

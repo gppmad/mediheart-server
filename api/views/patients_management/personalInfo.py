@@ -28,7 +28,6 @@ class PersonalInfoView(APIView):
             #query = DBModel.objects.values().get(pk=id) #Dict
             #print(query_obj.bloodType.type)
             query_obj = Patients.objects.get(pk=id)
-        
             api_response["firstname"] = query_obj.firstname
             api_response["lastname"] = query_obj.lastname
             api_response["gender"] = query_obj.get_gender_display()
