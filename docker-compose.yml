@@ -5,7 +5,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: ./docker/dev/server/Dockerfile
+      dockerfile: ./Dockerfile
     volumes:
       - ./:/server
     ports:
