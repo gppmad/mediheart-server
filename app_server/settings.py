@@ -176,7 +176,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static_files")
 
-
 # MAIL HOST
 # EMAIL_BACKEND = env('EMAIL_BACKEND')
 # EMAIL_HOST = env('EMAIL_HOST')
