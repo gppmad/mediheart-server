@@ -30,6 +30,6 @@ urlpatterns = [
     # patients_management view folder
     path('patients/', PatientsList.as_view(), name="patients"),
 
-    #TEST SECTION
+    # test section
     path('log/', TestLog.as_view())
 ]
