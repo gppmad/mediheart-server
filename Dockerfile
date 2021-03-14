@@ -10,12 +10,12 @@ ENV PYTHONUNBUFFERED 1
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY requirements.txt requirements.txt
+COPY ./requirements /server/requirements
 
 RUN pip install --no-cache-dir -r requirements.txt
 
 # copy project
-COPY . .
+COPY ./ /server
 
 #EXPOSE 8000
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
