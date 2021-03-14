@@ -1,4 +1,0 @@
--r base.txt
-virtualenv==20.0.10
-virtualenvwrapper-win==1.2.6
-pylint-django

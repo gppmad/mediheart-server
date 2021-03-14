@@ -5,9 +5,9 @@ services:
   server:
     build:
       context: .
-      dockerfile: ./docker/dev/server/Dockerfile
+      dockerfile: ./Dockerfile
     volumes:
-      - ./:/app_server
+      - ./:/server
     ports:
       - 8000:8000
     # env_file:

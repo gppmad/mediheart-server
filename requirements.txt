@@ -6,3 +6,4 @@ virtualenv==20.0.10
 virtualenvwrapper-win==1.2.6
 pylint-django
 gunicorn == 20.0.4
+django-cors-headers==3.7.0
