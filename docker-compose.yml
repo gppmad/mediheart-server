@@ -3,12 +3,9 @@ version: '3.7'
 services:
 
   server:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
+    image: mediheartserver:1.1.0
+    container_name: mediheart-server
     volumes:
       - ./:/server
     ports:
       - 8000:8000
-    # env_file:
-    #   - ./env/dev/.env
