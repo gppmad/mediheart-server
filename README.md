@@ -2,4 +2,5 @@
 A simple backend to experiment with Django and Docker.
 
 ---
-**To start developing MediHeart**
+**Let's start with docker** <br>
+Run docker-compose up -d 
