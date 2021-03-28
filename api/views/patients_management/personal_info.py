@@ -8,9 +8,7 @@ from api.models.patients import Patients as Patients
 from api.models.bloodtype import BloodType as BloodType
 from api.serializers.serializers import PatientsSerializer as PatientsSerializer
 from api.serializers.serializers import PatientsDelSerializer as PatientsDelSerializer
-# from api.serializers.serializers import PatientSerializer as DBModelSerializer #LEGACY
-# from api.serializers.serializers import PatientDelSerializer as DBModelDelSerializer #LEGACY
-# from api.models.patient import Patient as DBModel #LEGACY
+
 
 from dateutil.relativedelta import relativedelta
 
@@ -114,7 +112,6 @@ class PersonalInfoView(APIView):
                 return Response({"client_error":serializer.errors }, status=400)  
         return Response({"data":api_response}) 
 
-
 class PersonalInfoModifyView(APIView):
 
     """GET OBJECT(S) WITH ID PARAMETER"""
@@ -133,8 +130,6 @@ class PersonalInfoModifyView(APIView):
             return Response({"error":"resource not found" }, status=404)
 
         return Response({"data":api_response})
-
-
     
 class PersonalInfoAllUsersView(APIView):
      #UPDATE MULTPLE OBJECT(S)

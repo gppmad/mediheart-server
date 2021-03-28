@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from django.db.models import ObjectDoesNotExist
 
 
 class Logout(ObtainAuthToken):
@@ -14,5 +15,8 @@ class Logout(ObtainAuthToken):
         response["user"] = str(request.user)
 
         # Simply delete the token to force a login
-        request.user.auth_token.delete()
+        try:
+            request.user.auth_token.delete()
+        except (AttributeError, ObjectDoesNotExist):
+            pass
         return Response({"data": response })
