@@ -21,7 +21,7 @@
             "program": "${workspaceFolder}/manage.py",
             "args": [
                 "test",
-                "api/tests",
+                "api.tests.patients_management.${fileBasenameNoExtension}",
             ],
             "django": true
         }
