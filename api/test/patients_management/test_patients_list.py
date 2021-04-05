@@ -1,4 +1,3 @@
-import logging
 from django.db.models import F
 from django.test import TestCase
 from api.models.patients import Patients
