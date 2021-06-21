@@ -5,15 +5,13 @@ This repository is the home for Mediheart Backend App.
 ---
 * [Quick Start](#quick-start)
 * [API Provided](#usage)
-<br/>
-<br/>
+
 ## Quick Start  
 ---
 
 ```
 $ docker-compose up 
 ```
-<br/>
 
 ## API Provided  
 ---
