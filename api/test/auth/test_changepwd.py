@@ -13,15 +13,15 @@ class TestChangePwd(TestCase):
         # Needs API_PATIENTS, AUTH USER AND AUTHTOKEN_TOKEN ENTRIES
         
         # Setting up user obj
-        user1 = User.objects.create_user('rosario', 'rosario@thebeatles.com', 'rosariopassword')
-        user1.save()
+        user_test= User.objects.create_user('danny', 'danny@thebeatles.com', 'dannypassword')
+        user_test.save()
         
         # Setting up patients objs
-        p1 = Patients.objects.create(firstname="Valery", lastname="Dolce", birthDate=None, gender="F", bloodType=None, fk_user=None )
-        p2 = Patients.objects.create(firstname="Rosario", lastname="Dolce", birthDate=None, gender="M", bloodType=None, fk_user=user1)
+        p1 = Patients.objects.create(firstname="Valery", lastname="Sweet", birthDate=None, gender="F", bloodType=None, fk_user=None )
+        p2 = Patients.objects.create(firstname="Danny", lastname="Loss", birthDate=None, gender="M", bloodType=None, fk_user=user_test)
         
         # Setting up token objs
-        token, created = Token.objects.get_or_create(user=user1)
+        token, created = Token.objects.get_or_create(user=user_test)
         
         # Setting up bloodtype values
         # print("Setting up bloodtype table")

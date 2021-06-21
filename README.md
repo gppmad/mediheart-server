@@ -1,7 +1,20 @@
-# Mediheart Backend
-A simple backend to experiment with Django and Docker.
+# Mediheart Backend Server
+This repository is the home for Mediheart Backend App.
 
+## User Documentation
 ---
-**Let's start with docker** <br>
-Run docker-compose up -d
-Enjoy ! 
+* [Quick Start](#quick-start)
+* [API Provided](#usage)
+<br/>
+<br/>
+## Quick Start
+---
+
+```
+$ docker-compose up 
+```
+<br/>
+
+## API Provided
+---
+
