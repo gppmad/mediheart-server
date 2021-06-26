@@ -9,3 +9,4 @@ django-cors-headers==3.7.0
 # Dev-Requirements
 pylint-django
 autopep8
+ruamel.yaml

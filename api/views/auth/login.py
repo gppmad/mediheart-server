@@ -27,6 +27,4 @@ class Login(ObtainAuthToken):
             'token': token.key,
             'patientId': patient.id,
             'username': user.username
-             #'user_id': user.id, # Only for dev
-            #'patientName': patient.firstname
     })

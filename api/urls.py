@@ -4,10 +4,10 @@ from api.views.auth.login import Login
 from api.views.auth.logout import Logout
 from api.views.auth.signup import Signup
 from api.views.auth.delete_user import DeleteUser
-from api.views.auth.change_password import ChangePassword
+from api.views.auth.change_password import ChangePasswordView
 from api.views.patients_management.patients_list import PatientsList
 from api.views.patients_management.personal_info import PersonalInfoView,PersonalInfoModifyView,PersonalInfoAllUsersView
-from api.views.auth.test_auth import WelcomeAuth
+from api.views.auth.welcome_auth import WelcomeAuth
 from rest_framework.authtoken.views import obtain_auth_token
 
 
@@ -23,7 +23,7 @@ urlpatterns = [
     path('logout/', Logout.as_view(), name="logout"),
     path('signup/', Signup.as_view(), name="signup"),
     path('deleteu/', DeleteUser.as_view(), name="delete_user"),
-    path('changepass/', ChangePassword.as_view(), name="delete_user"),
+    path('changepass/', ChangePasswordView.as_view(), name="change_pass"),
     path('welcomeAuth/', WelcomeAuth.as_view()),
 
 
