@@ -7,15 +7,6 @@ from rest_framework import status
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticated 
 from django.contrib.auth.models import User
-from api.services.change_password import change_pass
-
-
-class ChangePassword (ObtainAuthToken):
-
-    # permission_classes = (IsAuthenticated,) 
-    def post (self,request):
-        return Response ("ok")
-        # return Response( {"msg":"ok"} if change_pass("kkkIITHHY") else {"msg":"not_ok"} )
 
 class ChangePasswordSerializer(serializers.Serializer):
 

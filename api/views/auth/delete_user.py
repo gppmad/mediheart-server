@@ -1,42 +1,41 @@
-import logging
+import time
 from django.contrib.auth.models import User
-from rest_framework.permissions import IsAuthenticated
+from django.db import transaction
+from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from api.models.patients import Patients
- 
 
-class DeleteUser (ObtainAuthToken):
+class DeleteUser(ObtainAuthToken):
+    permission_classes = (IsAuthenticated,) 
 
-    # def __delete_user():
-    #     try:
-    #     u = User.objects.get(username=username)
-    #     u.delete()
-    #     messages.success(request, "The user is deleted")
-
-    #     except User.DoesNotExist:
-    #         messages.error(request, "User doesnot exist")
-    #         return render(request, 'front.html')
-
-    #     except Exception as e:
-    #         return render(request, 'front.html', {'err': e.message})
+    @transaction.atomic
+    def __delete_user(self, token):
+        
+        # Delete Patients from PatientsTable with get_userid_by_token
+        # Delete Token entry from Token Table
+        # Delete User from User with get_userid_by_token 
+        start = time.time()
+        userid_by_token = Token.objects.values().get(key=token)["user_id"]
+        Patients.objects.filter(fk_user_id=userid_by_token).delete()
+        Token.objects.filter(user_id=userid_by_token).delete()
+        User.objects.filter(pk=userid_by_token).delete()
+        elapsed = time.time() - start
+        print("detroyed elapsed time: {} ".format(elapsed)) 
+        return True
+        
     
-    # permission_classes = (IsAuthenticated,)
-    
-    def post(self, request):
-        # serializer = self.serializer_class(
-        # data=request.data, context={'request': request})
-        # serializer.is_valid(raise_exception=True)
-        # user = serializer.validated_data['user']  # user obj
+    def get(self, request, *args, **kwargs):
 
-        #delete
-        #token
-        #patients
-        #auth_user
+        content = {
+        'action': "delete_user",
+        'user': str(request.user),  # `django.contrib.auth.User` instance.
+        'auth': str(request.auth),  # Token
+        }
 
-        # patient = Patients.objects.get(fk_user_id=user.id)
-        # request.user.auth_token.delete()
-        # user = User.objects.get()
+        token_request = str(request.auth)
+        self.__delete_user(token_request)
 
-        logging.info("test logging")
-        return Response({"msg": "ok"})
+        return Response(content)
+        

@@ -3,14 +3,20 @@ curl -X POST localhost:8000/api/login/ \
      -H "Content-Type: application/json" \
      -d '{"username":"valeriak6@gmail.com","password":"pluto125!"}' 
      
-
 #Welcome Auth
 curl -X GET http://127.0.0.1:8000/api/welcomeAuth/ \
      -H 'Authorization: Token f51c12462f5d8899f8441839c564a70d959c4870'
-
 
 #Change password
 curl -X PUT http://127.0.0.1:8000/api/changepass/ \
      -H 'Authorization: Token f51c12462f5d8899f8441839c564a70d959c4870' \
      -H 'Content-Type: application/json' \
      -d '{"old_password":"pluto123!","new_password":"pluto125!"}'
+
+#Logout
+curl -X GET http://127.0.0.1:8000/api/logout/ \
+     -H 'Authorization: Token f51c12462f5d8899f8441839c564a70d959c4870' 
+
+#Delete User
+curl -X GET http://127.0.0.1:8000/api/deleteuser/ \
+     -H 'Authorization: Token 0be51eede3826b80582bbc231277591a044bb552' 

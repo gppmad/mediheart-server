@@ -22,7 +22,7 @@ urlpatterns = [
     path('login/', Login.as_view(), name='api_token_auth'),  # <-- And here
     path('logout/', Logout.as_view(), name="logout"),
     path('signup/', Signup.as_view(), name="signup"),
-    path('deleteu/', DeleteUser.as_view(), name="delete_user"),
+    path('deleteuser/', DeleteUser.as_view(), name="delete_user"),
     path('changepass/', ChangePasswordView.as_view(), name="change_pass"),
     path('welcomeAuth/', WelcomeAuth.as_view()),
 
