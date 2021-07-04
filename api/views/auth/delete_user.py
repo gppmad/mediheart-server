@@ -25,7 +25,6 @@ class DeleteUser(ObtainAuthToken):
         print("detroyed elapsed time: {} ".format(elapsed)) 
         return True
         
-    
     def get(self, request, *args, **kwargs):
 
         content = {
