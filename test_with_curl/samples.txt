@@ -1,5 +1,13 @@
+#------ AUTH -----------------
+
+#Signup #Not working
+curl -X POST http://127.0.0.1:8000/api/signup/ \
+     -d 'username="valeriak6@gmail.com"' \
+     -d 'password1="pluto123!"' \
+     -d 'password2="pluto123!"'
+
 # Login 
-curl -X POST localhost:8000/api/login/ \
+curl -X POST http://127.0.0.1:8000/api/login/ \
      -H "Content-Type: application/json" \
      -d '{"username":"valeriak6@gmail.com","password":"pluto125!"}' 
      
@@ -20,3 +28,31 @@ curl -X GET http://127.0.0.1:8000/api/logout/ \
 #Delete User
 curl -X GET http://127.0.0.1:8000/api/deleteuser/ \
      -H 'Authorization: Token 0be51eede3826b80582bbc231277591a044bb552' 
+
+#------ PATIENT -----------------
+
+# Get Patient Info
+curl -X GET http://localhost:8000/api/personalInfo/1/
+
+# Add Patient #Not working
+curl -X POST http://localhost:8000/api/personalInfo/ \
+     -H 'Content-Type: application/json' \
+
+#------ NEW PATIENT MANAGEMENT -----------------
+curl -X POST http://localhost:8000/api/patients/ \ # NOT WORKING
+     -H "Content-Type: application/json" \
+     -d '{ \
+          "firstname": "peppe", \
+          "lastname": "peppe", \
+          "birthDate": 1992-04-17, \
+          "gender": "M", \
+          "bloodType": 4, \
+          "fk_user": null \
+          }'
+curl -X GET http://localhost:8000/api/patients/1/
+
+curl -X PUT http://localhost:8000/api/patients/1/ \
+     -H "Content-Type: application/json" \
+     -d '{"id": 1,"firstname": "valeria","lastname": "dolce","birthDate": "1992-04-13","gender": "F","bloodType": 4,"fk_user": 3}'
+
+curl -X DELETE http://localhost:8000/api/patients/1/
