@@ -32,10 +32,8 @@ urlpatterns = [
     # path('personalInfo/modify/<int:id>/', PersonalInfoModifyView.as_view()),
     path('personalInfo/', PersonalInfoAllUsersView.as_view()),  # for multiple operations (update all patients)
 
-    # patients_management view folder
+    # New patients management 
     path('patients/', PatientsList.as_view(), name="patients"),
     path('patients/<int:pk>/', PatientsDetail.as_view()),  
 
-    # test section
-    path('log/', TestLog.as_view())
 ]
