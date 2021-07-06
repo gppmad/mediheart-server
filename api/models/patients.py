@@ -22,4 +22,4 @@ class Patients(models.Model):
     fk_user = models.ForeignKey(User, on_delete = models.CASCADE,null=True, unique=True)
     
     def __str__(self):
-       return str(str(self.__dict__))
+       return str(str(self.firstname))
