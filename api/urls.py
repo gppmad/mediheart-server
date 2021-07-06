@@ -28,8 +28,8 @@ urlpatterns = [
     path('welcomeAuth/', WelcomeAuth.as_view()),
 
 
-    # path('personalInfo/<int:id>/', PersonalInfoView.as_view()),
-    # path('personalInfo/modify/<int:id>/', PersonalInfoModifyView.as_view()),
+    path('personalInfo/<int:id>/', PersonalInfoView.as_view()),
+    path('personalInfo/modify/<int:id>/', PersonalInfoModifyView.as_view()),
     path('personalInfo/', PersonalInfoAllUsersView.as_view()),  # for multiple operations (update all patients)
 
     # New patients management 
