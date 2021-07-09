@@ -62,10 +62,15 @@ curl -X DELETE http://localhost:8000/api/patients/1/
 #------ NEW AUTH MANAGEMENT -----------------
 
 #Login
-curl -X POST http://127.0.0.1:8000/api/api-token-auth/ \
+curl -i -X POST http://127.0.0.1:8000/api/auth/api-token-auth/ \
      -H "Content-Type: application/json" \
      -d '{"username":"login_tester","password":"2MZq5W$rZFDK.y+"}' 
 
 #Logout
-curl -X GET http://127.0.0.1:8000/api/auth/logout/ \
-     -H 'Authorization: Token 3ad451a132d225d54f8963652866e01d388649cb' 
+curl -i -X POST http://127.0.0.1:8000/api/auth/logout/ \
+     -H 'Authorization: Token e0fb5dc3356dd38d5e2dc4044f9993818e2dbdb3' 
+
+#Signup
+curl -i -X POST "http://127.0.0.1:8000/api/auth/signup/" \
+     -H "Content-Type: application/json" \
+     -d "{"username":"test","password":"test"}"

@@ -1,6 +1,7 @@
-from rest_framework import serializers
-from api.models.patients import Patients
+from django.contrib.auth.forms import UserModel
 from api.models.bloodtype import BloodType
+from api.models.patients import Patients
+from rest_framework import serializers
 
 class PatientsSerializer(serializers.ModelSerializer):
     class Meta:
