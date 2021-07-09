@@ -32,7 +32,6 @@ class Signup(ObtainAuthToken):
             # Create Patient into api_patients
             try:
                 new_patient = Patients.objects.create(fk_user_id=user.id) #Patient created with foreign key setted with
-                
             except:
                 user.delete()
                 return Response({"error:":"can't create patient with this user ID"}, status=500)

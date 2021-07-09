@@ -2,19 +2,20 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.views import ObtainAuthToken
 from django.db.models import ObjectDoesNotExist
+import logging
 
 
 class Logout(ObtainAuthToken):
-    
-    permission_classes = (IsAuthenticated,) 
-    def get(self, request, *args, **kwargs):
-        response = {}
-        response["action"] = "logout"
-        response["user"] = str(request.user)
 
-        # Simply delete the token to force a login
+    permission_classes = (IsAuthenticated,)
+
+    def post(self, request, *args, **kwargs):
+        logger = logging.getLogger(__name__)
+
         try:
             request.user.auth_token.delete()
-        except (AttributeError, ObjectDoesNotExist):
-            pass
-        return Response({"data": response })
+            logger.info("deleted %s token", request.user)
+        except ObjectDoesNotExist:
+            logger.error("user %s does not exist", request.user)
+
+        return Response()
