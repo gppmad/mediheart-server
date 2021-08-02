@@ -15,10 +15,9 @@ class Patients(models.Model):
     )
 
     firstname = models.CharField(max_length = 50)
-    lastname = models.CharField(max_length = 50, null=True)
-    birthDate = models.DateField(null=True)
+    birth_date = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES)
-    bloodType = models.ForeignKey(BloodType, on_delete=models.CASCADE,null=True)
+    blood_type = models.ForeignKey(BloodType, on_delete=models.CASCADE)
     fk_user = models.ForeignKey(User, on_delete = models.CASCADE,null=True, unique=True)
     
     def __str__(self):

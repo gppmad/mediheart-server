@@ -45,14 +45,18 @@ curl -X POST http://localhost:8000/api/personalInfo/ \
 
 #------ NEW PATIENT MANAGEMENT -----------------
 
-curl -X GET http://localhost:8000/api/patients/ #Get all patients
+#Get all patients
+curl -X GET http://localhost:8000/api/patients/ 
 
-curl -X GET http://localhost:8000/api/patients/1/ # Get patient info
+# Get patient info
+curl -X GET http://localhost:8000/api/patients/1/ 
 
-curl -X POST http://localhost:8000/api/patients/ \ # Add new user
+# Add new patients
+curl -X POST http://localhost:8000/api/patients/ \
      -H "Content-Type: application/json" \
-     -d '{"id": 1,"firstname": "valeria","lastname": "dolce","birthDate": "1992-04-13","gender": "F"}'
+     -d '{"id": 1,"firstname": "valeria","birthDate": "1992-04-13","gender": "F"}'
 
+# modify patient
 curl -X PUT http://localhost:8000/api/patients/1/ \
      -H "Content-Type: application/json" \
      -d '{"id": 1,"firstname": "valeria","lastname": "dolce","birthDate": "1992-04-13","gender": "F","bloodType": 4,"fk_user": 3}'

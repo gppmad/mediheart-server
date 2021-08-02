@@ -6,7 +6,7 @@ from rest_framework import serializers
 class PatientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Patients
-        fields = ['id','firstname','lastname','birthDate','gender','bloodType','fk_user']
+        fields = ['id','firstname','birth_date','gender','blood_type','fk_user']
 
 class PatientsDelSerializer(serializers.ModelSerializer):
     class Meta:
