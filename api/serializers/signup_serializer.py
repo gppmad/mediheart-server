@@ -9,7 +9,6 @@ class SignupSerializer(serializers.ModelSerializer):
     password2 = serializers.CharField(write_only=True)
 
     def create(self, validated_data):
-
         if validated_data["password1"] == validated_data["password2"]:
             user = UserModel.objects.create_user(
                 username=validated_data['username'],

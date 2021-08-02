@@ -4,6 +4,9 @@ from rest_framework.authtoken.views import obtain_auth_token
 
 from api.views.auth.logout import Logout as NewLogout
 from api.views.auth.signup import Signup as NewSignup
+from api.views.auth.delete_user import DeleteUser as NewDeleteUser
+from api.views.auth.change_password import ChangePasswordView as NewChangePassword
+
 from api.views.old_auth.change_password import ChangePasswordView
 from api.views.old_auth.delete_user import DeleteUser
 from api.views.old_auth.login import Login
@@ -34,7 +37,9 @@ urlpatterns = [
     path('auth/api-token-auth/', views.obtain_auth_token),
     path('auth/logout/', NewLogout.as_view(), name="auth logout"),
     path('auth/signup/', NewSignup.as_view(), name="auth signup"),
-    
+    path('auth/delete-user/', NewDeleteUser.as_view(), name="auth delete-user"),
+    path('auth/change-pass/', NewChangePassword.as_view(), name="auth change-pass"),
+
     # New patients management 
     path('patients/', PatientsList.as_view(), name="patients"),
     path('patients/<int:pk>/', PatientsDetail.as_view()),  

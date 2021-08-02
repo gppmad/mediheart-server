@@ -68,9 +68,20 @@ curl -i -X POST http://127.0.0.1:8000/api/auth/api-token-auth/ \
 
 #Logout
 curl -i -X POST http://127.0.0.1:8000/api/auth/logout/ \
-     -H 'Authorization: Token e0fb5dc3356dd38d5e2dc4044f9993818e2dbdb3' 
+     -H 'Authorization: Token 69cb0a982335eebd894f5fc43eb8a9fcb8782f4e' 
 
 #Signup
-curl -i -X POST "http://127.0.0.1:8000/api/auth/signup/" \
-     -H "Content-Type: application/json" \
-     -d "{"username":"test","password":"test"}"
+curl -X POST 'http://127.0.0.1:8000/api/auth/signup/' \
+     --form 'username="new_login_test"' \
+     --form 'password1="pluto123!"' \
+     --form 'password2="pluto123!"'
+
+#Delete User
+curl -X GET http://127.0.0.1:8000/api/auth/delete-user/ \
+     -H 'Authorization: Token bc7a6c0f1c2b69c50962735bf64cf7b26683afe5' 
+
+#Change password
+curl -X PUT http://127.0.0.1:8000/api/auth/change-pass/ \
+     -H 'Authorization: Token f062839207a86b98d53c89bf45b80fbf1f013ae4' \
+     -H 'Content-Type: application/json' \
+     -d '{"old_password":"pluto124!","new_password":"pluto124!"}'
