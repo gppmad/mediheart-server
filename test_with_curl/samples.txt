@@ -68,7 +68,7 @@ curl -X DELETE http://localhost:8000/api/patients/1/
 #Login
 curl -i -X POST http://127.0.0.1:8000/api/auth/api-token-auth/ \
      -H "Content-Type: application/json" \
-     -d '{"username":"login_tester","password":"2MZq5W$rZFDK.y+"}' 
+     -d '{"username":"new_login_test","password":"6Hrwu_xr6ViyFmE"}' 
 
 #Logout
 curl -i -X POST http://127.0.0.1:8000/api/auth/logout/ \
