@@ -13,13 +13,14 @@ from api.views.old_auth.login import Login
 from api.views.old_auth.logout import Logout
 from api.views.old_auth.signup import Signup
 from api.views.old_auth.welcome_auth import WelcomeAuth
-from api.views.patients.patients_api import PatientsDetail, PatientsList
+from api.views.patients.patients_api import PatientsDetail, PatientsListCreate
 from api.views.patients_management.personal_info import (
     PersonalInfoAllUsersView, PersonalInfoModifyView, PersonalInfoView)
+from api.views.generics.patient_form import PatientForm
 
 urlpatterns = [
 
-    # auth view folder 
+    # auth view folder
     path('login/', Login.as_view(), name='api_token_auth'),  # <-- And here
     path('logout/', Logout.as_view(), name="logout"),
     path('signup/', Signup.as_view(), name="signup"),
@@ -30,7 +31,8 @@ urlpatterns = [
 
     path('personalInfo/<int:id>/', PersonalInfoView.as_view()),
     path('personalInfo/modify/<int:id>/', PersonalInfoModifyView.as_view()),
-    path('personalInfo/', PersonalInfoAllUsersView.as_view()),  # for multiple operations (update all patients)
+    # for multiple operations (update all patients)
+    path('personalInfo/', PersonalInfoAllUsersView.as_view()),
 
 
     # New auth management
@@ -40,8 +42,10 @@ urlpatterns = [
     path('auth/delete-user/', NewDeleteUser.as_view(), name="auth delete-user"),
     path('auth/change-pass/', NewChangePassword.as_view(), name="auth change-pass"),
 
-    # New patients management 
-    path('patients/', PatientsList.as_view(), name="patients"),
-    path('patients/<int:pk>/', PatientsDetail.as_view()),  
+    # New patients management
+    path('patients/', PatientsListCreate.as_view(), name="patients"),
+    path('patients/<int:pk>/', PatientsDetail.as_view()),
+    path('patients/prepare-form/', PatientForm.as_view())
+
 
 ]
