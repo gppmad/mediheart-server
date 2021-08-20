@@ -61,14 +61,25 @@ curl -X PUT http://localhost:8000/api/patients/1/ \
      -H "Content-Type: application/json" \
      -d '{"id": 1,"firstname": "valeria","lastname": "dolce","birthDate": "1992-04-13","gender": "F","bloodType": 4,"fk_user": 3}'
 
+# delete patient
 curl -X DELETE http://localhost:8000/api/patients/1/
 
+# get patient-form preparation data
 curl -X GET http://localhost:8000/api/patients/prepare-form/ | json_pp -json_opt pretty,canonical
+
+#Get patients by user
+curl -X GET http://localhost:8000/api/patients/user/ \
+     -H 'Authorization: Token 91263fd3c08d3ca3f22206ee6ae4b411bb1593c7'
 
 #------ NEW AUTH MANAGEMENT -----------------
 
-#Login
+#Default Login
 curl -i -X POST http://127.0.0.1:8000/api/auth/api-token-auth/ \
+     -H "Content-Type: application/json" \
+     -d '{"username":"new_login_test","password":"6Hrwu_xr6ViyFmE"}' 
+
+#Login
+curl -i -X POST http://127.0.0.1:8000/api/auth/login/ \
      -H "Content-Type: application/json" \
      -d '{"username":"new_login_test","password":"6Hrwu_xr6ViyFmE"}' 
 

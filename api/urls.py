@@ -2,10 +2,12 @@ from django.urls import path
 from rest_framework.authtoken import views
 from rest_framework.authtoken.views import obtain_auth_token
 
+from api.views.auth.login import Login as NewLogin
 from api.views.auth.logout import Logout as NewLogout
 from api.views.auth.signup import Signup as NewSignup
 from api.views.auth.delete_user import DeleteUser as NewDeleteUser
 from api.views.auth.change_password import ChangePasswordView as NewChangePassword
+from api.views.patients.patients_api import GetPatientByUser, PatientsDetail, PatientsListCreate
 
 from api.views.old_auth.change_password import ChangePasswordView
 from api.views.old_auth.delete_user import DeleteUser
@@ -13,7 +15,6 @@ from api.views.old_auth.login import Login
 from api.views.old_auth.logout import Logout
 from api.views.old_auth.signup import Signup
 from api.views.old_auth.welcome_auth import WelcomeAuth
-from api.views.patients.patients_api import PatientsDetail, PatientsListCreate
 from api.views.patients_management.personal_info import (
     PersonalInfoAllUsersView, PersonalInfoModifyView, PersonalInfoView)
 from api.views.generics.patient_form import PatientForm
@@ -36,7 +37,9 @@ urlpatterns = [
 
 
     # New auth management
+
     path('auth/api-token-auth/', views.obtain_auth_token),
+    path('auth/login/', NewLogin.as_view(), name ="auth login"),
     path('auth/logout/', NewLogout.as_view(), name="auth logout"),
     path('auth/signup/', NewSignup.as_view(), name="auth signup"),
     path('auth/delete-user/', NewDeleteUser.as_view(), name="auth delete-user"),
@@ -45,7 +48,8 @@ urlpatterns = [
     # New patients management
     path('patients/', PatientsListCreate.as_view(), name="patients"),
     path('patients/<int:pk>/', PatientsDetail.as_view()),
-    path('patients/prepare-form/', PatientForm.as_view())
+    path('patients/prepare-form/', PatientForm.as_view()),
+    path('patients/user/', GetPatientByUser.as_view(), name="patients-by-user"),
 
 
 ]
