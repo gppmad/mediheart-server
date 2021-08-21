@@ -4,12 +4,12 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import authentication
 from api.models.patients import Patients
-from api.serializers.serializers import PatientsSerializer
+from api.serializers.serializers import PatientsSerializer,PatientsSimpleSerializer
 
 
 class PatientsListCreate(generics.ListCreateAPIView):
     queryset = Patients.objects.all()
-    serializer_class = PatientsSerializer
+    serializer_class = PatientsSimpleSerializer
 
 class PatientsDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Patients.objects.all()
@@ -25,4 +25,4 @@ class GetPatientByUser(generics.ListAPIView):
         for the currently authenticated user.
         """
         user = self.request.user
-        return Patients.objects.get(fk_user=user)
+        return Patients.objects.filter(fk_user=user)
