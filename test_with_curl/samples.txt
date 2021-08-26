@@ -99,6 +99,6 @@ curl -X GET http://127.0.0.1:8000/api/auth/delete-user/ \
 
 #Change password
 curl -X PUT http://127.0.0.1:8000/api/auth/change-pass/ \
-     -H 'Authorization: Token f062839207a86b98d53c89bf45b80fbf1f013ae4' \
+     -H 'Authorization: Token 335c2ac3cab27149f58b2c4338bdf2861b0f3120' \
      -H 'Content-Type: application/json' \
-     -d '{"old_password":"pluto124!","new_password":"pluto124!"}'
+     -d '{"old_password":"Pluto123!","new_password":"Pluto124!"}'
