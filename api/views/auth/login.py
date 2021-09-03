@@ -18,5 +18,6 @@ class Login(ObtainAuthToken):
         return Response({
             'token': token.key,
             'user_id': user.id,
+            'username': user.username,
             'is_first_login': is_first_login
     })

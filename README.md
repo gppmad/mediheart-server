@@ -12,9 +12,9 @@ Change your current directory.
 $ cd mediheart-server
 ```
 
-Run with docker.
+Build and run with docker (Docker installation required).
 ```
-$ docker-compose up 
+$ sh build_and_run.sh
 ```
 
 ## API Provided  
