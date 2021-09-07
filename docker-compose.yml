@@ -1,11 +1,8 @@
-version: '3.7'
+version: '3.9'
 
 services:
-
   server:
-    image: mediheartserver:1.1.0
+    build: .
     container_name: mediheart-server
-    volumes:
-      - ./:/server
     ports:
       - 8000:8000

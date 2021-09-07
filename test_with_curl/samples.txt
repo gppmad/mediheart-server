@@ -1,0 +1,104 @@
+#------ AUTH -----------------
+
+# Login 
+curl -X POST http://127.0.0.1:8000/api/login/ \
+     -H "Content-Type: application/json" \
+     -d '{"username":"login_tester","password":"2MZq5W$rZFDK.y+"}' 
+
+curl -X POST http://127.0.0.1:8000/api/login/ \
+     --form 'username="login_tester"' \
+     --form 'password="2MZq5W$rZFDK.y+"' 
+
+#Signup 
+curl -X POST 'http://127.0.0.1:8000/api/signup/' \
+     --form 'username="login_tester_2"' \
+     --form 'password1="pluto123!"' \
+     --form 'password2="pluto123!"'
+
+#Welcome Auth
+curl -X GET http://127.0.0.1:8000/api/welcomeAuth/ \
+     -H 'Authorization: Token f51c12462f5d8899f8441839c564a70d959c4870'
+
+#Change password
+curl -X PUT http://127.0.0.1:8000/api/changepass/ \
+     -H 'Authorization: Token f51c12462f5d8899f8441839c564a70d959c4870' \
+     -H 'Content-Type: application/json' \
+     -d '{"old_password":"pluto123!","new_password":"pluto125!"}'
+
+#Logout
+curl -X GET http://127.0.0.1:8000/api/logout/ \
+     -H 'Authorization: Token f51c12462f5d8899f8441839c564a70d959c4870' 
+
+#Delete User
+curl -X GET http://127.0.0.1:8000/api/deleteuser/ \
+     -H 'Authorization: Token 0be51eede3826b80582bbc231277591a044bb552' 
+
+#------ PATIENT -----------------
+
+# Get Patient Info
+curl -X GET http://localhost:8000/api/personalInfo/1/
+
+# Add Patient #Not working
+curl -X POST http://localhost:8000/api/personalInfo/ \
+     -H 'Content-Type: application/json' \
+
+
+#------ NEW PATIENT MANAGEMENT -----------------
+
+#Get all patients
+curl -X GET http://localhost:8000/api/patients/ 
+
+# Get patient info
+curl -X GET http://localhost:8000/api/patients/1/ 
+
+# Add new patients
+curl -X POST http://localhost:8000/api/patients/ \
+     -H "Content-Type: application/json" \
+     -d '{"firstname": "valeria","birth_date": "1992-04-13", "blood_type":1,"gender": "F"}'
+
+# modify patient
+curl -X PUT http://localhost:8000/api/patients/1/ \
+     -H "Content-Type: application/json" \
+     -d '{"id": 1,"firstname": "valeria","lastname": "dolce","birthDate": "1992-04-13","gender": "F","bloodType": 4,"fk_user": 3}'
+
+# delete patient
+curl -X DELETE http://localhost:8000/api/patients/1/
+
+# get patient-form preparation data
+curl -X GET http://localhost:8000/api/patients/prepare-form/ | json_pp -json_opt pretty,canonical
+
+#Get patients by user
+curl -X GET http://localhost:8000/api/patients/user/ \
+     -H 'Authorization: Token 91263fd3c08d3ca3f22206ee6ae4b411bb1593c7'
+
+#------ NEW AUTH MANAGEMENT -----------------
+
+#Default Login
+curl -i -X POST http://127.0.0.1:8000/api/auth/api-token-auth/ \
+     -H "Content-Type: application/json" \
+     -d '{"username":"new_login_test","password":"6Hrwu_xr6ViyFmE"}' 
+
+#Login
+curl -i -X POST http://127.0.0.1:8000/api/auth/login/ \
+     -H "Content-Type: application/json" \
+     -d '{"username":"new_login_test","password":"6Hrwu_xr6ViyFmE"}' 
+
+#Logout
+curl -i -X POST http://127.0.0.1:8000/api/auth/logout/ \
+     -H 'Authorization: Token 69cb0a982335eebd894f5fc43eb8a9fcb8782f4e' 
+
+#Signup
+curl -X POST 'http://127.0.0.1:8000/api/auth/signup/' \
+     --form 'username="new_login_test"' \
+     --form 'password1="pluto123!"' \
+     --form 'password2="pluto123!"'
+
+#Delete User
+curl -X GET http://127.0.0.1:8000/api/auth/delete-user/ \
+     -H 'Authorization: Token bc7a6c0f1c2b69c50962735bf64cf7b26683afe5' 
+
+#Change password
+curl -X PUT http://127.0.0.1:8000/api/auth/change-pass/ \
+     -H 'Authorization: Token 335c2ac3cab27149f58b2c4338bdf2861b0f3120' \
+     -H 'Content-Type: application/json' \
+     -d '{"old_password":"Pluto123!","new_password":"Pluto124!"}'
