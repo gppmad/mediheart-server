@@ -26,7 +26,9 @@ class Signup(APIView):
                     logger.info(f"user \'{new_user} \' created")
                     return Response({
                         'token': token.key,
-                        'username': new_user.username
+                        'user_id': new_user.id,
+                        'username': new_user.username,
+                        'is_first_login': True
                     })
                 except Exception as e:
                     logger.info(f"can't create token for {new_user} -> {e}")

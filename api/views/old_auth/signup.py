@@ -43,7 +43,7 @@ class Signup(ObtainAuthToken):
                 'patientId': new_patient.id,
                 'username': user.username
             })
-            #return Response({"data":"user created"})
+            
 
         else:
             return Response({"error:":form.errors}, status=404)
