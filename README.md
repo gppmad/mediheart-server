@@ -39,7 +39,7 @@ docker run -p 8000:8000 mediheart-server
 |    URL   | Method | Description | 
 |-------------------------------|:------:| :-------: |  
 | /api/personalInfo/<int:id>        | GET    | Get patient by ID
-| /api//personalInfo/               | POST   | Add patient(s)  
+| /api/personalInfo/               | POST   | Add patient(s)  
 | /api/personalInfo/                | PUT    | Modify patient information 
 | /api/personalInfo/                | DELETE | Delete patients  
 | /api/patients/                    | GET    | Get all patients in database
