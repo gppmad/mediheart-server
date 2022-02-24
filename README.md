@@ -28,11 +28,11 @@ docker run -p 8000:8000 mediheart-server
 
 |    URL       | Method |
 |------------- |:------:|
-| /login/      | POST   |   
-| /logout/     | GET   |   
-| /signup/     | POST   | 
-| /deleteu/    | POST   |   
-| /changepass/ | POST   | 
+| /api/login/      | POST   |   
+| /api/logout/     | GET   |   
+| /api/signup/     | POST   | 
+| /api/deleteu/    | POST   |   
+| /api/changepass/ | POST   | 
   
 ### Patients Management API
 
