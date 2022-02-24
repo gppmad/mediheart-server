@@ -12,9 +12,12 @@ Change your current directory.
 $ cd mediheart-server
 ```
 
-Build and run with docker (Docker installation required).
+Build and run with Docker (Docker installation required).
+
 ```
-$ sh build_and_run.sh
+docker build -t mediheart-server .  
+docker run -p 8000:8000 mediheart-server
+
 ```
 
 ## API Provided  
@@ -35,8 +38,8 @@ $ sh build_and_run.sh
 
 |    URL   | Method | Description | 
 |-------------------------------|:------:| :-------: |  
-| /personalInfo/<int:id>        | GET    | Get patient by ID
-| /personalInfo/                | POST   | Add patient(s)  
-| /personalInfo/                | PUT    | Modify patient information 
-| /personalInfo/                | DELETE | Delete patients  
-| /patients/                    | GET    | Get all patients in database
+| /api/personalInfo/<int:id>        | GET    | Get patient by ID
+| /api//personalInfo/               | POST   | Add patient(s)  
+| /api/personalInfo/                | PUT    | Modify patient information 
+| /api/personalInfo/                | DELETE | Delete patients  
+| /api/patients/                    | GET    | Get all patients in database
